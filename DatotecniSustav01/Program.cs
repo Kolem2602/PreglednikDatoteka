@@ -12,25 +12,32 @@ namespace DatotecniSustav01
 
             var datoteke = dirInfo.GetFiles();
             long velicina = 0;
+            //varijable za laksu pretvorbu B u KB,MB,GB
+            const long OneKb = 1024;
+            const long OneMb = OneKb * 1024;
+            const long OneGb = OneMb * 1024;
+       
 
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
-            Console.WriteLine("| Veličina       B |          KB |      MB | Nazivi datoteka                          |");
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
+            Console.WriteLine("+------------------+-------------+---------+----------------------------------------------------+");
+            Console.WriteLine("| Veličina       B |          KB |      MB |      GB | Nazivi datoteka                          |");
+            Console.WriteLine("+------------------+-------------+---------+----------------------------------------------------+");
             foreach (FileInfo d in datoteke)
             {
                 velicina += d.Length;
-                Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3,40} |", 
+                Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 4} GB |{4,40} |", 
                     d.Length, 
-                    d.Length / 1024, 
-                    d.Length / (1024 * 1024),
+                    d.Length / OneKb, 
+                    d.Length / OneMb,
+                    d.Length / OneGb,
                     d.FullName);
             }
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
-            Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB |                                          |",
+            Console.WriteLine("+------------------+-------------+---------+--------------------------------------------------+");
+            Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB |  {3,4}GB                                          |",
                 velicina,
-                velicina / 1024,
-                velicina / (1024 * 1024));
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
+                velicina / OneKb,
+                velicina / OneMb,
+                velicina/OneGb);
+            Console.WriteLine("+------------------+-------------+---------+--------------------------------------------------+");
 
             Console.SetCursorPosition(1, 3);
             Console.Write(">");
